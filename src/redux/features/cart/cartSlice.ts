@@ -2,6 +2,7 @@
 import { IProduct } from './../../../types/globalTypes';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
+// Types
 interface ICart {
   products: IProduct[];
   total: number;
@@ -26,6 +27,7 @@ const CartSlice = createSlice({
       }
       state.total += action.payload.price;
     },
+    // Remove single Product Ouantity from cart
     removeOne: (state, action: PayloadAction<IProduct>) => {
       const extingCart = state.products.find(
         (item) => item._id === action.payload._id
@@ -39,6 +41,8 @@ const CartSlice = createSlice({
       }
       state.total -= action.payload.price;
     },
+
+    // Remove a Prouct  cart
     removeCart: (state, action: PayloadAction<IProduct>) => {
       state.products = state.products.filter(
         (product) => product._id !== action.payload._id
